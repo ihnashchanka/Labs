@@ -152,7 +152,6 @@ public class RegEx {
                 inString = inString.substring(mWord.end());
                 mQuote = quote.matcher(inString);
                 mWord = word.matcher(inString);
-
             }
         }
     }
