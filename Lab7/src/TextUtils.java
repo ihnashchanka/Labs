@@ -28,7 +28,8 @@ public class TextUtils {
             String token = sc.next();
             if(token.matches("\\d+"))
                 numbersOnly.add(token);
-             else noNumbers.add(token);
+            else if(token.matches("\\D+"))
+              noNumbers.add(token);
         }
     }
 
