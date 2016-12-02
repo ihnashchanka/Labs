@@ -60,7 +60,7 @@ public class FileUtils {
     private static void readPoem() {
         try {
             int curChar;
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(POEM), "Cp1251"));
+            BufferedReader br = new BufferedReader(new FileReader(POEM));
             while ((curChar = br.read()) != -1) {
                 poem.add((char) curChar + br.readLine());
             }
@@ -75,12 +75,15 @@ public class FileUtils {
         for (Path name : dir) rootLevel++;
         for (String file : files) {
             try {
-                PrintWriter pw = new PrintWriter
-                        (new OutputStreamWriter(new FileOutputStream(DirectoryPath + file), "Cp1251"), true);
+                FileWriter fw = new FileWriter(DirectoryPath + file);
                 int line = 0;
                 Path path = Paths.get(DirectoryPath + file);
                 for (Path name : path) line++;
-                pw.println(poem.get(line - rootLevel - 1));
+                fw.write("Level: " + (line - rootLevel) + "\n");
+                fw.write("Directory: " + DirectoryPath + file + "\n");
+                fw.write(poem.get(line - rootLevel - 1)+ "\n");
+                fw.close();
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
